@@ -8,7 +8,7 @@ export default class MovieView extends Observer<MovieModel> {
 
     constructor(subject: MovieModel) {
         super(subject);
-        this.selector = document.querySelector('movies') as HTMLDivElement ?? document.createElement('div');
+        this.selector = document.querySelector('movies') as HTMLDivElement ?? document.createElement('movies');
         if (!this.selector) {
             console.error("El elemento <movies> no se encontró en el DOM.");
         } else {
@@ -43,6 +43,7 @@ export default class MovieView extends Observer<MovieModel> {
         });
         this.selector.appendChild(carousel);
     }
+
     private createMovieCard(movie: Movie): HTMLDivElement {
         const card = document.createElement('div');
         card.className = 'movie-card';

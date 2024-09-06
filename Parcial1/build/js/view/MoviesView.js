@@ -3,7 +3,7 @@ export default class MovieView extends Observer {
     selector;
     constructor(subject) {
         super(subject);
-        this.selector = document.querySelector('movies') ?? document.createElement('div');
+        this.selector = document.querySelector('movies') ?? document.createElement('movies');
         if (!this.selector) {
             console.error("El elemento <movies> no se encontró en el DOM.");
         }
