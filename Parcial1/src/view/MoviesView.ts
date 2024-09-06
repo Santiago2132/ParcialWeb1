@@ -8,18 +8,25 @@ export default class MovieView extends Observer<MovieModel> {
 
     constructor(subject: MovieModel) {
         super(subject);
-        // Cambia 'movies' a '#movies' o '.movies' si es necesario
         this.selector = document.querySelector('movies') as HTMLDivElement ?? document.createElement('div');
+        if (!this.selector) {
+            console.error("El elemento <movies> no se encontró en el DOM.");
+        } else {
+            console.log("El elemento <movies> fue encontrado correctamente.");
+        }
     }
+
 
     public update(): void {
         this.render();
+
     }
 
     public render(): void {
+        console.log("Renderizando la vista de películas");
         this.addSearchBar();
-        this.addMovieCarousel(); // Renderiza el carrusel de películas
-        this.addListeners(); // Añadir listeners a los elementos del carrusel
+        this.addMovieCarousel();
+        this.addListeners();
     }
 
     private addMovieCarousel(): void {

@@ -7,7 +7,7 @@ export default class IndexView {
         this.movieView = movieView;
     }
     render() {
-        if (this.movieView) {
+        if (this.movieView != undefined) {
             this.movieView.render();
         }
     }

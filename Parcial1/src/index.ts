@@ -28,3 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {// Asegúrate de que `IndexController` tenga un método `update`
     }, updateInterval);
 });
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    const indexController = new IndexController(indexView, indexModel, movieModel, movieView);
+    indexController.init();
+});
+*/

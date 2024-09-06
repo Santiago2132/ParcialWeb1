@@ -23,3 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
     }, updateInterval);
 });
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    const indexController = new IndexController(indexView, indexModel, movieModel, movieView);
+    indexController.init();
+});
+*/

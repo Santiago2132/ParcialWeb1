@@ -12,8 +12,8 @@ export default class IndexView {
     }
 
     public render(): void {
-        if (this.movieView) {
-        this.movieView.render();
+        if (this.movieView != undefined) {
+        this.movieView.render()
         }
     }
 }
