@@ -16,6 +16,8 @@ export default class IndexModel {
         if (response.status !== 200) {
             return []
         }
+        console.log("Se envio")
+        console.log(response)
         return await response.json()
     }
 
