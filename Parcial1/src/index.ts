@@ -11,12 +11,20 @@ const movieModel = new MovieModel([]);
 const indexView = new IndexView();
 const movieView = new MovieView(movieModel);
 
-// Crear el controlador y configurarlo
+// Crear el controlador
 const indexController = new IndexController(indexView, indexModel, movieModel, movieView);
-indexController.init();
 
 // Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', () => {
+    // Iniciar el controlador
+    indexController.init();
+
+    // Iniciar el render del menú
     const menuView = new MenuView();
     menuView.render();
+
+    // Lógica para actualizar constantemente la aplicación
+    const updateInterval = 1000; // Intervalo de actualización en milisegundos
+    setInterval(() => {// Asegúrate de que `IndexController` tenga un método `update`
+    }, updateInterval);
 });

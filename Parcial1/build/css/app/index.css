@@ -82,6 +82,11 @@ nav button{
     height: 25px;
     padding: 4px;
     overflow: hidden;
+    background: linear-gradient( 90deg,
+        rgba(32, 27, 19, 1) 0%,
+        rgba(51, 51, 51, 1) 47%,
+        rgba(75, 77, 78, 1) 100%
+    );
 }
 
 .container {
@@ -114,4 +119,28 @@ footer h1 {
 }
 footer h3{
     font-size: 15px;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo general para todos los botones */
+#btn1, #btn3 {
+    background-color: transparent; /* Botones 1 y 3 con fondo transparente */
+    border: none; /* Añadir un borde opcional */
+    color: #ffffff; /* Color del texto */
+    font-size: 15px;
+}
+
+#btn2 {
+    background-color: #4b4d4e; 
+    color: white; 
+    font-size: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

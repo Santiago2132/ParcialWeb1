@@ -8,9 +8,11 @@ export default class MenuView {
             const div = document.createElement("div");
             // Insertar tres botones dentro del div
             div.innerHTML = `
-                <button id="btn1">Botón 1</button>
-                <button id="btn2">Botón 2</button>
-                <button id="btn3">Botón 3</button>
+                <section class="buttons">
+                    <button id="btn1">Home</button>
+                    <button id="btn2">Retails</button>
+                    <button id="btn3">About</button>
+                </section>
             `;
             // Añadir el div al elemento <menu>
             menuElement.appendChild(div);
