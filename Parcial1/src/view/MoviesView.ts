@@ -77,7 +77,7 @@ export default class MovieView extends Observer<MovieModel> {
         });
         }
     }
-    
+    /*
     private addSearchBar(): void {
         // Crear el input de búsqueda si no existe
         if (!this.selector.querySelector('.search-bar')) {
@@ -92,8 +92,21 @@ export default class MovieView extends Observer<MovieModel> {
           // Añadir listener para filtrar las tarjetas de películas
             searchInput.addEventListener('input', this.filterMovies.bind(this));
         }
-    }
-    
+    }*/
+        private addSearchBar(): void {
+            // Seleccionar el input de búsqueda ya existente en el HTML
+            const searchInput = document.querySelector('input') as HTMLInputElement;
+            
+            if (searchInput) {
+                // Añadir listener para filtrar las tarjetas de películas
+                searchInput.placeholder = "Busca películas...";
+                searchInput.addEventListener('input', this.filterMovies.bind(this));
+            } else {
+                console.error("No se encontró el input de búsqueda en el DOM.");
+            }
+        }
+        
+        /*
     private filterMovies(): void {
         const filterText = (this.selector.querySelector('.search-bar') as HTMLInputElement)?.value.toLowerCase() || '';
         const cards = this.selector.getElementsByClassName('movie-card');
@@ -108,4 +121,27 @@ export default class MovieView extends Observer<MovieModel> {
             }
         }
     }
+        */
+    private filterMovies(): void {
+        // Selecciona el input de búsqueda correcto en el DOM
+        const searchInput = document.querySelector('input') as HTMLInputElement;
+    
+        if (searchInput) {
+            const filterText = searchInput.value.toLowerCase();
+            const cards = this.selector.getElementsByClassName('movie-card');
+        
+            for (const card of cards) {
+                const title = (card as HTMLDivElement).querySelector('h3')?.textContent?.toLowerCase() ?? '';
+                const description = (card as HTMLDivElement).querySelector('p')?.textContent?.toLowerCase() ?? '';
+                if (title.includes(filterText) || description.includes(filterText)) {
+                    (card as HTMLDivElement).style.display = ''; // Mostrar tarjeta si coincide con el filtro
+                } else {
+                    (card as HTMLDivElement).style.display = 'none'; // Ocultar tarjeta si no coincide
+                }
+            }
+        } else {
+            console.error("No se encontró el input de búsqueda para filtrar las películas.");
+        }
+    }
+    
 }

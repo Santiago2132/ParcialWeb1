@@ -22,14 +22,13 @@ export default class IndexController {
 
         this.menuView=new MenuView()
 
-        this.view.setMovieView(this.movieView);
+        this.view.setMovieView(this.movieView);//Despues de inicializarla
         this.view.setMenuView(this.menuView)
     }
 
     public async init(): Promise<void> {
         const data = await this.model.getMoviesFromFile(); // Asegúrate de tener el método getMoviesFromFile en tu modelo de índice
         this.movieModel.setMovies(data);
-
         this.view.render()
     }
 }
