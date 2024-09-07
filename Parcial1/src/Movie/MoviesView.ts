@@ -48,48 +48,46 @@ export default class MovieView extends Observer<MovieModel> {
         this.selector.appendChild(carousel);
     }*/
 
-        private addMovieCarousel(): void {
-            const existingCarousel = this.selector.querySelector('.carousel');
-            if (existingCarousel) {
-                this.selector.removeChild(existingCarousel);
-            }        
-        
-            const carousel = document.createElement('div');
-            carousel.className = 'carousel';
-        
-            const movies: Movie[] = (this.subject as MovieModel).getMovies();
-            const startIndex = (this.currentPage - 1) * this.moviesPerPage;
-            const endIndex = startIndex + this.moviesPerPage;
-            const moviesToDisplay = movies.slice(startIndex, endIndex);  // Selecciona las películas para la página actual
-        
-            moviesToDisplay.forEach((movie: Movie) => {
-                const card = this.createMovieCard(movie);
-                carousel.appendChild(card);
-            });
-        
-            this.selector.appendChild(carousel);
-        
-            this.addPaginationButtons();  // Añade botones de paginación
-        }
-
-        public discoverImages(movie: Movie): string {
-            const path = './img/movies/';
-            const defaultImage = './img/movies/not-icon.png';
-            let imageUrl = movie.thumbnail ? path + movie.thumbnail : defaultImage;
-            //  verifica si la imagen existe
+    private addMovieCarousel(): void {
+        const existingCarousel = this.selector.querySelector('.carousel');
+        if (existingCarousel) {
+            this.selector.removeChild(existingCarousel);
+        }        
+        const carousel = document.createElement('div');
+        carousel.className = 'carousel';
+        const movies: Movie[] = (this.subject as MovieModel).getMovies();
+        const startIndex = (this.currentPage - 1) * this.moviesPerPage;
+        const endIndex = startIndex + this.moviesPerPage;
+        const moviesToDisplay = movies.slice(startIndex, endIndex); 
+        moviesToDisplay.forEach(async (movie: Movie) => {
+            const card = this.createMovieCard(movie);
+            carousel.appendChild(await card);
+        });
+        this.selector.appendChild(carousel);
+        this.addPaginationButtons();  // Añade botones de paginación
+    }
+    private discoverImages(movie: Movie): Promise<string> {
+        const path = './img/movies/';
+        const defaultImage = './img/movies/not-icon.png';
+        const imageUrl = movie.thumbnail ? path + movie.thumbnail : defaultImage;
+        return new Promise((resolve) => {
             const img = new Image();
             img.src = imageUrl;
+            // Si la imagen carga correctamente
+            img.onload = () => resolve(imageUrl);
+            // Si hay un error al cargar la imagen, usar la predeterminada
             img.onerror = () => {
-                imageUrl = defaultImage;
                 console.log('Imagen no encontrada, utilizando imagen predeterminada');
+                resolve(defaultImage);
             };
-            return imageUrl;
-        }
-
-    private createMovieCard(movie: Movie): HTMLDivElement {
-        const url = this.discoverImages(movie);
+        });
+    }
+    
+    private async createMovieCard(movie: Movie): Promise<HTMLDivElement> {
+        const url = await this.discoverImages(movie);
         const card = document.createElement('div');
         card.className = 'movie-card';
+    
         const img = document.createElement('img');
         img.src = url;
         img.alt = movie.title;
@@ -101,18 +99,21 @@ export default class MovieView extends Observer<MovieModel> {
         description.textContent = movie.extract;
         
         const containerLeft = document.createElement('div');
-        containerLeft.className = 'left-m'
+        containerLeft.className = 'left-m';
+    
         const containerRight = document.createElement('div');
-        containerRight.className = 'right-m'
-
+        containerRight.className = 'right-m';
+    
         containerLeft.appendChild(img);
         containerRight.appendChild(title);
         containerRight.appendChild(description);
         card.appendChild(containerLeft);
         card.appendChild(containerRight);
+    
         return card;
     }
     
+
     private addListeners(): void {
         // Aquí puedes agregar listeners a las tarjetas de películas, como para mostrar detalles al hacer clic
         const cards = this.selector.getElementsByClassName('movie-card');

@@ -49,10 +49,10 @@ export default class MovieView extends Observer {
         const movies = this.subject.getMovies();
         const startIndex = (this.currentPage - 1) * this.moviesPerPage;
         const endIndex = startIndex + this.moviesPerPage;
-        const moviesToDisplay = movies.slice(startIndex, endIndex); // Selecciona las películas para la página actual
-        moviesToDisplay.forEach((movie) => {
+        const moviesToDisplay = movies.slice(startIndex, endIndex);
+        moviesToDisplay.forEach(async (movie) => {
             const card = this.createMovieCard(movie);
-            carousel.appendChild(card);
+            carousel.appendChild(await card);
         });
         this.selector.appendChild(carousel);
         this.addPaginationButtons(); // Añade botones de paginación
@@ -60,18 +60,21 @@ export default class MovieView extends Observer {
     discoverImages(movie) {
         const path = './img/movies/';
         const defaultImage = './img/movies/not-icon.png';
-        let imageUrl = movie.thumbnail ? path + movie.thumbnail : defaultImage;
-        //  verifica si la imagen existe
-        const img = new Image();
-        img.src = imageUrl;
-        img.onerror = () => {
-            imageUrl = defaultImage;
-            console.log('Imagen no encontrada, utilizando imagen predeterminada');
-        };
-        return imageUrl;
+        const imageUrl = movie.thumbnail ? path + movie.thumbnail : defaultImage;
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.src = imageUrl;
+            // Si la imagen carga correctamente
+            img.onload = () => resolve(imageUrl);
+            // Si hay un error al cargar la imagen, usar la predeterminada
+            img.onerror = () => {
+                console.log('Imagen no encontrada, utilizando imagen predeterminada');
+                resolve(defaultImage);
+            };
+        });
     }
-    createMovieCard(movie) {
-        const url = this.discoverImages(movie);
+    async createMovieCard(movie) {
+        const url = await this.discoverImages(movie);
         const card = document.createElement('div');
         card.className = 'movie-card';
         const img = document.createElement('img');
