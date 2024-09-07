@@ -1,8 +1,8 @@
-import IndexModel from '../model/IndexModel.js';
-import MovieModel from '../model/MovieModel.js';
-import IndexView from '../view/IndexView.js';
-import MenuView from '../view/MenuView.js';
-import MovieView from '../view/MoviesView.js';
+import IndexModel from './IndexModel.js';
+import MovieModel from '../Movie/MovieModel.js';
+import IndexView from '../Index/IndexView.js';
+import MenuView from '../Menu/MenuView.js';
+import MovieView from '../Movie/MoviesView.js';
 
 export default class IndexController {
     private view: IndexView;

@@ -19,24 +19,48 @@ movies{
     height: 300px;
 }
 
-.carousel{
+.carousel {
+    margin-left: 5%;
     display: grid;
-    grid-template-columns: repeat(5, minmax(250px,0.6fr));
-    width: 250px;
+    grid-template-columns: repeat(5, minmax(250px, 0.5fr));
+    gap: 5px;
+    padding: 10px;
+    width: 260px;
     height: 100px;
-    gap: 10px;
     align-items: center;
-    margin-left:2%
 }
 
 .movie-card{
-    background: linear-gradient(90deg, rgba(32, 27, 19, 1) 0%, rgba(51, 51, 51, 1) 47%, rgba(75, 77, 78, 1) 100%);
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
     color: white;
-    padding: 15px;
+    padding: 15px;    
+    height: 170px;
+    overflow: hidden;    
     border-radius: 2px;
+    justify-content: space-between;
+    background: linear-gradient(90deg, rgba(32, 27, 19, 1) 0%, rgba(51, 51, 51, 1) 47%, rgba(75, 77, 78, 1) 100%);
+}
+.left-m {
+    width: 45%; /* Ajusta el ancho del contenedor izquierdo */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 170px;
+    align-items: center; /* Centra la imagen verticalmente */
 }
 
+.movie-card img {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor izquierdo */
+    height: auto;
+    object-fit: cover; /* Asegura que la imagen mantenga sus proporciones dentro del contenedor */
+}
+
+.right-m {
+    width: 50%; /* Ajusta el ancho del contenedor derecho */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Espacio distribuido equitativamente en el contenedor derecho */
+}
+
+/* =================================================================
+/* Configuración general */

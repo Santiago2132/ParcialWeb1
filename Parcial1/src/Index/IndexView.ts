@@ -1,5 +1,5 @@
-import MovieView from '../view/MoviesView.js';
-import MenuView from './MenuView.js';
+import MovieView from '../Movie/MoviesView';
+import MenuView from '../Menu/MenuView.js';
 
 export default class IndexView {
     private movieView: MovieView | undefined;

@@ -1,6 +1,6 @@
 import Movie from '../types/Movie.js';
 import Subject from '../types/Subject.js';
-import MovieView from '../view/MoviesView.js';
+import MovieView from '../Movie/MoviesView.js';
 
 export default class MovieModel extends Subject<MovieView>{
     private movies: Movie[];

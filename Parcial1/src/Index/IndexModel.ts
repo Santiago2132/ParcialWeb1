@@ -24,4 +24,6 @@ export default class IndexModel {
     public getMovies = (): Movie[] => {
         return this.movies
     }
+
+    
 }
