@@ -18,7 +18,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: none;
-    border: red solid 6px;
+   /* border: red solid 6px;*/
     overflow: hidden;
     height: 100vh;
 }
@@ -28,23 +28,25 @@ movies {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    border: #4b5fd4 20px solid;
+    /*border: #4b5fd4 20px solid;*/
     width: 100%;
     height: 100%;
+    padding: 0px;
 }
 
 .carousel {
     display: grid;
     grid-template-columns: repeat(5, minmax(150px, 0.5fr));
-    row-gap: 2px; /* Reduce la separación vertical entre filas */
-    column-gap: 4px; /* Mantén la separación horizontal */
-    padding: 10px;
-    width: 100%;
-    height: 100%;
+    gap: 2px; /* Reduce la separación vertical entre filas */
+   /* Mantén la separación horizontal */
+    padding: 5px;
+    width: 90%;
+    height: 85%;
     align-items: center;
-    border: black solid 1px;
+   /* border: black solid 1px;*/
     overflow: hidden;
     justify-content: center;
+    margin-top: -20px;
 }
 
 .movie-card {
@@ -56,7 +58,9 @@ movies {
     overflow: hidden;    
     border-radius: 2px;
     justify-content: space-between;
+    border-radius: 1%;
     background: var(--main-color-gradient);
+   
 }
 
 .left-m, .right-m{
@@ -64,19 +68,22 @@ movies {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0px;
 }
 
 .movie-card img {
-    width: 80%;
-    height: 65%;
-    margin:1%;
+    width: 70%;
+    height: 50%;
+    margin:5px;
+    margin-left: -8px;
+
 }
 
 .left-m{
     color: var(--main-color); 
 }
 .right-m {
-    width: 50%;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -96,11 +103,68 @@ movies {
     width: 70%;
     object-fit: cover;
     padding: none;
+    margin-left: -35px;
+    margin-top: -5px;
+
+
 }
 .movie-card .star{
     margin: none;
+    margin-left: -35px;
+
 }
 .movie-card .genres-list{
     margin: 0px;
     font-size: 10px;
+    margin-left: -75px;
+
+    
+}
+.title-card{
+    font-size: 12px;
+    justify-content: left;
+    align-items: flex-start;
+    margin-top: -5px;
+    margin-left: -5px;
+}
+.description{
+    font-size: 7px;
+    margin-top: -25px;
+    height: 150px;
+}
+.rent-button{
+   background-color: #e0a31d;
+   border: none;
+   border-radius: 1px;
+   width: 100%;
+   height: 25px;
+}
+
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    bottom: 85px;
+    right: 70px
+
+}
+
+.pagination-btn {
+    background-color: var(--main-color);
+    color: var(--text-color-light);
+    border: none;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+.pagination-btn:hover {
+    background-color: #946500;
+}
+
+.page-counter {
+    font-size: 14px;
+    color: #333;
 }

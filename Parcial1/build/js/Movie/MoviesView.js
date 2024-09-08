@@ -83,8 +83,10 @@ export default class MovieView extends Observer {
         img.src = url;
         img.alt = movie.title;
         const title = document.createElement('h3');
+        title.className = 'title-card';
         title.textContent = movie.title;
         const description = document.createElement('p');
+        description.className = 'description';
         description.textContent = movie.extract;
         // Crear el contenedor izquierdo
         const containerLeft = document.createElement('div');
@@ -111,7 +113,7 @@ export default class MovieView extends Observer {
         containerRight.appendChild(description);
         // Crear el botón de rentar con el precio (color naranja)
         const rentButton = document.createElement('button');
-        rentButton.textContent = `Rentar - $${movie.price}`;
+        rentButton.textContent = `$${this.precio(movie.price)} RENT`;
         rentButton.className = 'rent-button orange-button';
         // Añadir el botón debajo de la descripción
         containerRight.appendChild(rentButton);
@@ -133,6 +135,9 @@ export default class MovieView extends Observer {
             starsContainer.appendChild(star);
         }
         return starsContainer;
+    }
+    precio(price) {
+        return price.toLocaleString();
     }
     addListeners() {
         // Aquí puedes agregar listeners a las tarjetas de películas, como para mostrar detalles al hacer clic
@@ -187,8 +192,6 @@ export default class MovieView extends Observer {
         paginationContainer.className = 'pagination-buttons';
         // Posicionamiento en la esquina inferior derecha
         paginationContainer.style.position = 'absolute';
-        paginationContainer.style.bottom = '10px';
-        paginationContainer.style.right = '10px';
         const totalPages = Math.ceil(this.subject.getMovies().length / this.moviesPerPage);
         // Botón para ir a la página anterior
         if (this.currentPage > 1) {
