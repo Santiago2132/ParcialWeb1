@@ -14,31 +14,22 @@ export default class MovieView extends Observer {
         else {
             console.log("El elemento <movies> fue encontrado correctamente.");
         }
+        // Añadir listener para el evento resize
+        window.addEventListener('resize', this.updateMoviesPerPage.bind(this));
+        // Llamada inicial para ajustar el número de películas por página
+        this.updateMoviesPerPage();
     }
     update() {
         this.render();
     }
     render() {
         console.log("Renderizando la vista de películas");
+        // Actualiza el número de películas por página basado en el tamaño de la ventana
+        this.updateMoviesPerPage();
         this.addSearchBar();
         this.addMovieCarousel();
         this.addListeners();
     }
-    /*
-    private addMovieCarousel(): void {
-        const existingCarousel = this.selector.querySelector('.carousel');
-        if (existingCarousel) {
-            this.selector.removeChild(existingCarousel);
-        }
-        const carousel = document.createElement('div');
-        carousel.className = 'carousel';
-        const movies: Movie[] = (this.subject as MovieModel).getMovies();
-        movies.forEach((movie: Movie) => {
-            const card = this.createMovieCard(movie);
-            carousel.appendChild(card);
-        });
-        this.selector.appendChild(carousel);
-    }*/
     addMovieCarousel() {
         const existingCarousel = this.selector.querySelector('.carousel');
         if (existingCarousel) {
@@ -56,6 +47,17 @@ export default class MovieView extends Observer {
         });
         this.selector.appendChild(carousel);
         this.addPaginationButtons(); // Añade botones de paginación
+    }
+    updateMoviesPerPage() {
+        const viewportWidth = window.innerWidth;
+        if (viewportWidth <= 600) {
+            this.moviesPerPage = 3; // Si la pantalla es de 600px o menos, mostrar 3 películas por página
+        }
+        else {
+            this.moviesPerPage = 10; // Para pantallas más grandes, mostrar 10 películas por página
+        }
+        // Vuelve a renderizar el carrusel después de actualizar moviesPerPage
+        this.addMovieCarousel();
     }
     discoverImages(movie) {
         const path = './img/movies/';
@@ -84,16 +86,53 @@ export default class MovieView extends Observer {
         title.textContent = movie.title;
         const description = document.createElement('p');
         description.textContent = movie.extract;
+        // Crear el contenedor izquierdo
         const containerLeft = document.createElement('div');
         containerLeft.className = 'left-m';
+        // Crear la puntuación en estrellas de manera asíncrona
+        const stars = this.scoreStars(movie.score);
+        stars.className = 'star';
+        // Crear la lista ordenada de géneros
+        const genreList = document.createElement('ul');
+        genreList.className = 'genres-list';
+        movie.genres.forEach(genre => {
+            const genreItem = document.createElement('li');
+            genreItem.textContent = genre;
+            genreList.appendChild(genreItem);
+        });
+        // Añadir la puntuación y la lista de géneros al contenedor izquierdo
+        containerLeft.appendChild(img);
+        containerLeft.appendChild(stars);
+        containerLeft.appendChild(genreList);
+        // Crear el contenedor derecho
         const containerRight = document.createElement('div');
         containerRight.className = 'right-m';
-        containerLeft.appendChild(img);
         containerRight.appendChild(title);
         containerRight.appendChild(description);
+        // Crear el botón de rentar con el precio (color naranja)
+        const rentButton = document.createElement('button');
+        rentButton.textContent = `Rentar - $${movie.price}`;
+        rentButton.className = 'rent-button orange-button';
+        // Añadir el botón debajo de la descripción
+        containerRight.appendChild(rentButton);
+        // Añadir ambos contenedores a la tarjeta
         card.appendChild(containerLeft);
         card.appendChild(containerRight);
         return card;
+    }
+    // Método auxiliar para crear las estrellas de puntuación
+    scoreStars(score) {
+        const fullStar = '★';
+        const emptyStar = '☆';
+        const totalStars = 5;
+        const starsContainer = document.createElement('div');
+        starsContainer.className = 'stars-container';
+        for (let i = 0; i < totalStars; i++) {
+            const star = document.createElement('span');
+            star.textContent = i < score ? fullStar : emptyStar;
+            starsContainer.appendChild(star);
+        }
+        return starsContainer;
     }
     addListeners() {
         // Aquí puedes agregar listeners a las tarjetas de películas, como para mostrar detalles al hacer clic
@@ -105,22 +144,6 @@ export default class MovieView extends Observer {
             });
         }
     }
-    /*
-    private addSearchBar(): void {
-        // Crear el input de búsqueda si no existe
-        if (!this.selector.querySelector('.search-bar')) {
-            const searchInput = document.createElement('input');
-            searchInput.type = 'text';
-            searchInput.className = 'form-control search-bar';
-            searchInput.placeholder = 'Buscar películas...';
-    
-          // Insertar el input de búsqueda en el DOM
-            this.selector.insertBefore(searchInput, this.selector.firstChild);
-    
-          // Añadir listener para filtrar las tarjetas de películas
-            searchInput.addEventListener('input', this.filterMovies.bind(this));
-        }
-    }*/
     addSearchBar() {
         // Seleccionar el input de búsqueda ya existente en el HTML
         const searchInput = document.querySelector('input');
@@ -133,22 +156,6 @@ export default class MovieView extends Observer {
             console.error("No se encontró el input de búsqueda en el DOM.");
         }
     }
-    /*
-private filterMovies(): void {
-    const filterText = (this.selector.querySelector('.search-bar') as HTMLInputElement)?.value.toLowerCase() || '';
-    const cards = this.selector.getElementsByClassName('movie-card');
-
-    for (const card of cards) {
-        const title = (card as HTMLDivElement).querySelector('h3')?.textContent?.toLowerCase() ?? '';
-        const description = (card as HTMLDivElement).querySelector('p')?.textContent?.toLowerCase() ?? '';
-        if (title.includes(filterText) || description.includes(filterText)) {
-            (card as HTMLDivElement).style.display = ''; // Mostrar tarjeta si coincide con el filtro
-        } else {
-            (card as HTMLDivElement).style.display = 'none'; // Ocultar tarjeta si no coincide
-        }
-    }
-}
-    */
     filterMovies() {
         // Selecciona el input de búsqueda correcto en el DOM
         const searchInput = document.querySelector('input');
@@ -186,17 +193,24 @@ private filterMovies(): void {
         // Botón para ir a la página anterior
         if (this.currentPage > 1) {
             const prevButton = document.createElement('button');
-            prevButton.textContent = 'Anterior';
+            prevButton.innerHTML = '←'; // Usar una flecha izquierda
+            prevButton.className = 'pagination-btn'; // Clase para estilo
             prevButton.addEventListener('click', () => {
                 this.currentPage--;
                 this.render(); // Re-renderiza la vista con la nueva página
             });
             paginationContainer.appendChild(prevButton);
         }
+        // Contador de páginas
+        const pageCounter = document.createElement('span');
+        pageCounter.textContent = `${this.currentPage}/${totalPages}`;
+        pageCounter.className = 'page-counter'; // Clase para estilo
+        paginationContainer.appendChild(pageCounter);
         // Botón para ir a la página siguiente
         if (this.currentPage < totalPages) {
             const nextButton = document.createElement('button');
-            nextButton.textContent = 'Siguiente';
+            nextButton.innerHTML = '→'; // Usar una flecha derecha
+            nextButton.className = 'pagination-btn'; // Clase para estilo
             nextButton.addEventListener('click', () => {
                 this.currentPage++;
                 this.render(); // Re-renderiza la vista con la nueva página
