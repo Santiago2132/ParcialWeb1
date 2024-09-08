@@ -22,7 +22,7 @@ export default class IndexController {
 
         this.menuView=new MenuView()
 
-        this.view.setMovieView(this.movieView);//Despues de inicializarla
+        this.view.setMovieView(this.movieView);
         this.view.setMenuView(this.menuView)
     }
 

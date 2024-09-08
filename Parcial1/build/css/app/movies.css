@@ -38,55 +38,64 @@ movies {
     display: grid;
     grid-template-columns: repeat(5, minmax(150px, 0.5fr));
     gap: 2px; /* Reduce la separación vertical entre filas */
-   /* Mantén la separación horizontal */
-    padding: 5px;
+    padding: none;
     width: 90%;
     height: 85%;
     align-items: center;
-   /* border: black solid 1px;*/
     overflow: hidden;
     justify-content: center;
     margin-top: -20px;
+    margin:none;
+    border: 2px solid red;
 }
 
 .movie-card {
     display: flex;
     flex-direction: row;
-    padding: 15px;
     color: white;
-    height: 170px;
+    height: 95%;
     overflow: hidden;    
     border-radius: 2px;
     justify-content: space-between;
-    border-radius: 1%;
     background: var(--main-color-gradient);
-   
+    border: red solid 2px;
 }
 
-.left-m, .right-m{
-    width: 50%;
+.left-m {
+    padding-left: 10%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0px;
+    justify-content: center;
+    border: white solid 2px;
+    overflow: hidden;
+    color: var(--main-color); 
+}
+.right-m h3{
+    font-size: 12px;
+    margin: none;
+}
+
+.right-m {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea todo al centro verticalmente */
+    justify-content: center; /* Alinea todo al centro horizontalmente */
+    border: white solid 2px;
+    overflow: hidden; /* Evita desbordamiento */
+}
+
+/* Control de alineación individual de los ítems dentro de right-m */
+.right-m > * {
+    align-self: center; /* Alinea cada ítem al centro de forma predeterminada */
 }
 
 .movie-card img {
     width: 70%;
     height: 50%;
-    margin:5px;
-    margin-left: -8px;
-
-}
-
-.left-m{
-    color: var(--main-color); 
-}
-.right-m {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin: none;
 }
 
 /* Estilos del párrafo dentro de movie-card */
@@ -105,8 +114,6 @@ movies {
     padding: none;
     margin-left: -35px;
     margin-top: -5px;
-
-
 }
 .movie-card .star{
     margin: none;
@@ -133,13 +140,13 @@ movies {
     height: 150px;
 }
 .rent-button{
-   background-color: #e0a31d;
-   border: none;
-   border-radius: 1px;
-   width: 100%;
-   height: 25px;
+    background-color: #e0a31d;
+    border: none;
+    border-radius: 1px;
+    width: 100%;
+    height: 25px;
 }
-
+/*<---------------------------------------------------------------->*/
 .pagination-buttons {
     display: flex;
     align-items: center;

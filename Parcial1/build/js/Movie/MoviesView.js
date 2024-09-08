@@ -82,7 +82,9 @@ export default class MovieView extends Observer {
         const img = document.createElement('img');
         img.src = url;
         img.alt = movie.title;
-        const title = document.createElement('h3');
+        const year = document.createElement('h3');
+        year.textContent = movie.year.toString();
+        const title = document.createElement('h2');
         title.className = 'title-card';
         title.textContent = movie.title;
         const description = document.createElement('p');
@@ -110,6 +112,7 @@ export default class MovieView extends Observer {
         const containerRight = document.createElement('div');
         containerRight.className = 'right-m';
         containerRight.appendChild(title);
+        containerRight.appendChild(year);
         containerRight.appendChild(description);
         // Crear el botón de rentar con el precio (color naranja)
         const rentButton = document.createElement('button');

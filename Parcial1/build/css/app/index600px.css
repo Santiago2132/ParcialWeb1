@@ -103,7 +103,7 @@ footer {
     background: var(--main-color-gradient);
     color: var(--text-color-light);
     text-align: center;
-    height: 70px;
+    height: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,11 +115,11 @@ footer h1, footer h3 {
 }
 
 footer h1 {
-    font-size: 25px;
+    font-size: 110%;
 }
 
 footer h3 {
-    font-size: 10px;
+    font-size: 80%;
 }
 
 #btn1, #btn3 {
@@ -153,6 +153,9 @@ footer h3 {
     font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pagination-btn:hover {
