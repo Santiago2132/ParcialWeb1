@@ -51,13 +51,13 @@ export default class MovieView extends Observer {
     updateMoviesPerPage() {
         const viewportWidth = window.innerWidth;
         if (viewportWidth <= 600) {
-            this.moviesPerPage = 3; // Si la pantalla es de 600px o menos, mostrar 3 películas por página
+            this.moviesPerPage = 3;
         }
         else if (viewportWidth <= 900) {
-            this.moviesPerPage = 5; // Si la pantalla es de 600px o menos, mostrar 3 películas por página
+            this.moviesPerPage = 5;
         }
         else {
-            this.moviesPerPage = 10; // Para pantallas más grandes, mostrar 10 películas por página
+            this.moviesPerPage = 10;
         }
         // Vuelve a renderizar el carrusel después de actualizar moviesPerPage
         this.addMovieCarousel();

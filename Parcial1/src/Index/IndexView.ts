@@ -40,7 +40,7 @@ export default class IndexView {
 
         if (width >= 600) {
             newStylesheetUrl = './css/app/index.css';
-        } else {
+        }else {
             newStylesheetUrl = './css/app/index600px.css';
         }
 

@@ -1,0 +1,190 @@
+:root {
+    --main-color: #e0a31d;
+    --main-color-dark: #201b13;
+    --main-color-light: #4b4d4e;
+    --main-color-gradient: linear-gradient(
+        90deg,
+        rgba(32, 27, 19, 1) 0%,
+        rgba(51, 51, 51, 1) 47%,
+        rgba(75, 77, 78, 1) 100%
+    );
+    --text-color-dark: #201b13;
+    --text-color-light: #f5f5f5;
+    --btn-hover: #4b5fd4;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: none;
+/* border: red solid 6px;*/
+    overflow: hidden;
+    height: 100vh;
+}
+
+movies {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /*border: #4b5fd4 20px solid;*/
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+}
+
+.carousel {
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: repeat(5, minmax(150px, 0.5fr));
+    gap: 2px; /* Reduce la separación vertical entre filas */
+    padding: none;
+    width: 90%;
+    height: 85%;
+    align-items: center;
+    overflow: hidden;
+    justify-content: center;
+    margin-top: -20px;
+    margin:none;
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    height: 95%;
+    overflow: hidden;    
+    border-radius: 2px;
+    justify-content: space-between;
+    /*background: var(--main-color-gradient);*/
+    background-color: #e0a31d;
+    margin: none;
+    padding-bottom: 0px;
+}
+
+.left-m {
+    padding-left: 10%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--main-color); 
+}
+.right-m {
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es demasiado grande */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2% 5% 20px 2%; /* Agrega padding lateral y en la parte inferior */
+    box-sizing: border-box; /* Asegura que el padding y border estén dentro del tamaño total del contenedor */
+    padding-top: 5px;
+}
+
+.right-m > * {
+    margin: 0; /* Elimina márgenes de todos los elementos hijos */
+    width: 100%; /* Asegura que los elementos hijos utilicen todo el ancho disponible */
+    flex-shrink: 0; /* Evita que los elementos se encojan */
+}
+
+.right-m .title-card {
+    height: 8%; /* Reduce la altura del título */
+    width: 100%;
+    font-weight: 900;
+    font-size: 100%;
+    margin-bottom: 2px;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el texto que se desborda */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+}
+
+.right-m h3 {
+    height: 8%; /* Reduce la altura del año */
+    width: 100%;
+    font-weight: 900;
+    font-size: 60%;
+    margin-bottom: 2px;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el texto que se desborda */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+}
+
+.right-m p {
+    height: 74%; /* Aumenta la altura del párrafo */
+    width: 100%;
+    font-size: 12px; 
+    overflow-y: auto; 
+    margin-bottom: 2px; /* Ajusta el margen inferior */
+    white-space: normal; /* Permite que el párrafo se divida en varias líneas */
+    overflow-wrap: break-word; /* Rompe las palabras largas si es necesario */
+}
+
+.rent-button {
+    height: 15%; /* Define la altura del botón */
+    overflow: hidden;
+    background-color: #e0a31d;
+    border: none;
+    border-radius: 1px;
+    font-size: 80%;
+    flex-shrink: 0; /* Evita que el botón se encoja */
+    margin-top: 1px; /* Añade un pequeño espacio entre el botón y el párrafo */
+    margin-bottom: 1px; /* Añade un pequeño espacio entre el botón y el final del contenedor */
+    color: #f5f5f5;
+}
+
+
+
+/*-------------------------------------------------------------------*/
+
+.movie-card h3{
+    margin: none;
+}
+.movie-card img {
+    width: 80%;
+    object-fit: cover;
+    padding: none;
+    margin-left: -35px;
+    margin-top: -5px;
+}
+.movie-card .star{
+    margin: none;
+    margin-left: -35px;
+}
+.movie-card .genres-list{
+    margin: 0px;
+    font-size: 10px;
+    margin-left: -75px;
+}
+/*<---------------------------------------------------------------->*/
+.pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    bottom: 85px;
+    right: 70px
+
+}
+
+.pagination-btn {
+    background-color: var(--main-color);
+    color: var(--text-color-light);
+    border: none;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+.pagination-btn:hover {
+    background-color: #946500;
+}
+
+.page-counter {
+    font-size: 14px;
+    color: #333;
+}
