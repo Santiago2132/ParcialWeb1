@@ -18,7 +18,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: none;
-   /* border: red solid 6px;*/
+/* border: red solid 6px;*/
     overflow: hidden;
     height: 100vh;
 }
@@ -46,7 +46,6 @@ movies {
     justify-content: center;
     margin-top: -20px;
     margin:none;
-    border: 2px solid red;
 }
 
 .movie-card {
@@ -58,58 +57,91 @@ movies {
     border-radius: 2px;
     justify-content: space-between;
     background: var(--main-color-gradient);
-    border: red solid 2px;
+    margin: none;
+    padding-bottom: 0px;
 }
 
 .left-m {
     padding-left: 10%;
-    width: 30%;
+    width: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: white solid 2px;
     overflow: hidden;
     color: var(--main-color); 
 }
-.right-m h3{
-    font-size: 12px;
-    margin: none;
-}
-
 .right-m {
-    width: 70%;
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido es demasiado grande */
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    width: 75%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Alinea todo al centro verticalmente */
-    justify-content: center; /* Alinea todo al centro horizontalmente */
-    border: white solid 2px;
-    overflow: hidden; /* Evita desbordamiento */
+    height: 100%;
+    padding: 2% 5% 20px 2%; /* Agrega padding lateral y en la parte inferior */
+    box-sizing: border-box; /* Asegura que el padding y border estén dentro del tamaño total del contenedor */
+    padding-top: 5px;
 }
 
-/* Control de alineación individual de los ítems dentro de right-m */
 .right-m > * {
-    align-self: center; /* Alinea cada ítem al centro de forma predeterminada */
+    margin: 0; /* Elimina márgenes de todos los elementos hijos */
+    width: 100%; /* Asegura que los elementos hijos utilicen todo el ancho disponible */
+    flex-shrink: 0; /* Evita que los elementos se encojan */
 }
 
-.movie-card img {
-    width: 70%;
-    height: 50%;
-    margin: none;
+.right-m .title-card {
+    height: 8%; /* Reduce la altura del título */
+    width: 100%;
+    font-weight: 900;
+    font-size: 100%;
+    margin-bottom: 2px;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el texto que se desborda */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
 }
 
-/* Estilos del párrafo dentro de movie-card */
-.movie-card p {
-    margin: none;
-    font-size: 12px; /* Haz el texto más pequeño */
-    max-height: 60px; /* Limita la altura del párrafo */
-    overflow-y: auto; /* Permite el scroll vertical si el contenido se desborda */
+.right-m h3 {
+    height: 8%; /* Reduce la altura del año */
+    width: 100%;
+    font-weight: 900;
+    font-size: 60%;
+    margin-bottom: 2px;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden; /* Oculta el texto que se desborda */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
 }
+
+.right-m p {
+    height: 74%; /* Aumenta la altura del párrafo */
+    width: 100%;
+    font-size: 12px; 
+    overflow-y: auto; 
+    margin-bottom: 2px; /* Ajusta el margen inferior */
+    white-space: normal; /* Permite que el párrafo se divida en varias líneas */
+    overflow-wrap: break-word; /* Rompe las palabras largas si es necesario */
+}
+
+.rent-button {
+    height: 15%; /* Define la altura del botón */
+    overflow: hidden;
+    background-color: #e0a31d;
+    border: none;
+    border-radius: 1px;
+    font-size: 80%;
+    flex-shrink: 0; /* Evita que el botón se encoja */
+    margin-top: 1px; /* Añade un pequeño espacio entre el botón y el párrafo */
+    margin-bottom: 1px; /* Añade un pequeño espacio entre el botón y el final del contenedor */
+}
+
+
+
+/*-------------------------------------------------------------------*/
+
 .movie-card h3{
     margin: none;
 }
 .movie-card img {
-    width: 70%;
+    width: 80%;
     object-fit: cover;
     padding: none;
     margin-left: -35px;
@@ -118,33 +150,11 @@ movies {
 .movie-card .star{
     margin: none;
     margin-left: -35px;
-
 }
 .movie-card .genres-list{
     margin: 0px;
     font-size: 10px;
     margin-left: -75px;
-
-    
-}
-.title-card{
-    font-size: 12px;
-    justify-content: left;
-    align-items: flex-start;
-    margin-top: -5px;
-    margin-left: -5px;
-}
-.description{
-    font-size: 7px;
-    margin-top: -25px;
-    height: 150px;
-}
-.rent-button{
-    background-color: #e0a31d;
-    border: none;
-    border-radius: 1px;
-    width: 100%;
-    height: 25px;
 }
 /*<---------------------------------------------------------------->*/
 .pagination-buttons {

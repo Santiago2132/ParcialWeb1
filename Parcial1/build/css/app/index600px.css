@@ -2,22 +2,18 @@
     --main-color: #e0a31d;
     --main-color-dark: #201b13;
     --main-color-light: #4b4d4e;
-    --main-color-gradient: linear-gradient(
-        90deg,
-        rgba(32, 27, 19, 1) 0%,
-        rgba(51, 51, 51, 1) 47%,
-        rgba(75, 77, 78, 1) 100%
-    );
+    --main-color-gradient: linear-gradient(90deg, #201b13 0%, #333 47%, #4b4d4e 100%);
     --text-color-dark: #201b13;
     --text-color-light: #f5f5f5;
     --btn-hover: #4b5fd4;
 }
 
+/* Global Styles */
 html, body {
     height: 100%;
     margin: 0;
-    box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho y alto */
-    overflow-x: hidden; /* Evita el scroll horizontal */
+    box-sizing: border-box;
+    overflow: hidden; /* Evita el scroll en el body */
 }
 
 body {
@@ -26,48 +22,76 @@ body {
     font-family: 'Lucida Sans', sans-serif;
 }
 
-header {
-    overflow: hidden;
+/* Header and Footer */
+header, footer {
     background: var(--main-color-gradient);
     color: var(--text-color-light);
-    height: 100px;
+    text-align: center;
+    height: 10%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    width: 100%; /* Asegura que el header no se desborde */
-}
-header svg {
     width: 100%;
-    height: 100%;
-    
+    overflow: hidden;
+    position: fixed;
+    z-index: 10;
 }
-header h1{
+
+header {
+    top: 0;
+}
+
+footer {
+    bottom: 0;
+}
+
+header svg {
+    height: 200px;
+    width: 200px;
+}
+
+header h1, header h3, footer h1, footer h3 {
+    margin: 0;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header h3, footer h3 {
+    font-size: 1rem;
+}
+
+footer h1 {
+    font-size: 110%;
+}
+
+footer h3 {
     font-size: 80%;
 }
-header h3{
-    font-size: 70%;
-}
+
+/* Navigation */
 nav {
     background-color: var(--main-color);
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 0 1rem;
-    box-sizing: border-box;
-    overflow: hidden;
-    width: 100%; /* Asegura que el nav no se desborde */
+    height: 180px;
+    position: fixed;
+    top: 10%; /* Debajo del header */
+    width: 100%;
+    z-index: 9;
 }
 
 #search {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Asegura que el contenedor de búsqueda no se desborde */
+    width: 100%;
+    margin-top: 0%;
+    border: #201b13 solid 1px;
 }
 
-#search input, #search button {
+#search input, #search button, .pagination-btn {
     height: 25px;
     margin: 0;
     box-sizing: border-box;
@@ -85,66 +109,7 @@ nav {
     padding: 4px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    width: 100%; /* Asegura que el contenedor principal no se desborde */
-}
-
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Asegura que el main no se desborde */
-}
-
-footer {
-    background: var(--main-color-gradient);
-    color: var(--text-color-light);
-    text-align: center;
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Asegura que el footer no se desborde */
-}
-
-footer h1, footer h3 {
-    margin: 0;
-}
-
-footer h1 {
-    font-size: 110%;
-}
-
-footer h3 {
-    font-size: 80%;
-}
-
-#btn1, #btn3 {
-    background-color: transparent;
-    border: none;
-    color: var(--text-color-light);
-    font-size: 15px;
-}
-
-#btn2 {
-    background-color: #4b4d4e;
-    color: var(--text-color-light);
-    font-size: 15px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pagination-buttons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
+/* Pagination Buttons */
 .pagination-btn {
     background-color: var(--main-color);
     color: var(--text-color-light);
@@ -153,24 +118,122 @@ footer h3 {
     font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .pagination-btn:hover {
     background-color: #946500;
 }
 
-
 .page-counter {
     font-size: 14px;
     color: #333;
 }
 
+/* Main Content */
+main {
+    flex: 1;
+    margin-top: calc(10% + 180px); /* Espacio ocupado por header y nav */
+    margin-bottom: 10%; /* Espacio ocupado por el footer */
+    overflow-y: auto; /* Habilita el scroll interno */
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 
 
-/* Evita el scroll horizontal en dispositivos pequeños */
+/* Carousel */
+/* Ajusta la configuración del grid */
+.carousel {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna */
+    grid-template-rows: repeat(3, minmax(250px, 1fr)); /* Aumenta la altura mínima a 250px para las cartas */
+    gap: 20px; /* Espacio entre las cartas */
+    padding: 10px;
+    height: 100%;
+    border: black solid 1px;
+    justify-content: center;
+    overflow-y: scroll; /* Habilita el scroll en el carrusel */
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: row;
+    height: 100%; /* Asegura que la carta ocupe todo el espacio del grid */
+    overflow: hidden;
+    background: var(--main-color-gradient);
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px;
+}
+
+/* Estilo para la parte izquierda de la carta */
+.left-m {
+    padding-left: 10%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-color); 
+}
+
+/* Estilo para la parte derecha de la carta */
+.right-m {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 2%;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Estilo para la parte derecha de la carta */
+.right-m {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 2%;
+    box-sizing: border-box;
+    /* Removemos el scroll general */
+    overflow: hidden;
+}
+
+/* Estilo para el título dentro de la carta */
+.right-m .title-card {
+    font-size: 1rem; /* Ajusta el tamaño de la fuente para mejor visualización */
+    font-weight: 700;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Estilo para el párrafo dentro de la carta */
+.right-m p {
+    max-height: 400px; /* Limita la altura máxima del párrafo a 400px */
+    overflow-y: auto; /* Habilita el scroll solo en el párrafo si el contenido excede los 400px */
+    font-size: 14px;
+    margin-bottom: 10px;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+/* Estilo para el botón dentro de la carta */
+.rent-button {
+    height: 40px;
+    background-color: #e0a31d;
+    border: none;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
@@ -186,86 +249,14 @@ footer h3 {
         flex-wrap: wrap;
     }
 }
-.buttons{
-    display: flex;
-    flex-direction: column;
-}
+
+
+
 .buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%; /* Asegura que el contenedor de botones no se desborde */
-}
-
-
-.carousel {
-    
-    display: grid;
-    grid-template-columns: repeat(5, minmax(150px, 0.5fr));
-    row-gap: 2px; /* Reduce la separación vertical entre filas */
-    column-gap: 4px; /* Mantén la separación horizontal */
-    padding: 10px;
     width: 100%;
-    height: 100%;
-    align-items: center;
-    border: black solid 1px;
-    overflow: hidden;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.movie-card {
-    display: flex;
-    flex-direction: row;
-    padding: 15px;
-    color: white;
-    height: 170px;
-    overflow: hidden;    
-    border-radius: 2px;
-    justify-content: space-between;
-    background: var(--main-color-gradient);
-}
-
-.left-m, .right-m{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.movie-card img {
-    width: 80%;
-    height: 65%;
-    margin:1%;
-}
-
-.left-m{
-    color: var(--main-color); 
-}
-.right-m {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Estilos del párrafo dentro de movie-card */
-.movie-card p {
-    font-size: 12px; /* Haz el texto más pequeño */
-    max-height: 60px; /* Limita la altura del párrafo */
-    overflow-y: auto; /* Permite el scroll vertical si el contenido se desborda */
-}
-.movie-card img {
-    width: 70%;
-    object-fit: cover;
-    padding: none;
-}
-.movie-card .star{
-    margin: none;
-}
-.movie-card .genres-list{
-    margin: 0px;
-    font-size: 10px;
+    margin-bottom: 0%;
 }

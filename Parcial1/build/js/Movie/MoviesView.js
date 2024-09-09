@@ -53,6 +53,9 @@ export default class MovieView extends Observer {
         if (viewportWidth <= 600) {
             this.moviesPerPage = 3; // Si la pantalla es de 600px o menos, mostrar 3 películas por página
         }
+        else if (viewportWidth <= 900) {
+            this.moviesPerPage = 5; // Si la pantalla es de 600px o menos, mostrar 3 películas por página
+        }
         else {
             this.moviesPerPage = 10; // Para pantallas más grandes, mostrar 10 películas por página
         }
@@ -111,14 +114,13 @@ export default class MovieView extends Observer {
         // Crear el contenedor derecho
         const containerRight = document.createElement('div');
         containerRight.className = 'right-m';
-        containerRight.appendChild(title);
-        containerRight.appendChild(year);
-        containerRight.appendChild(description);
         // Crear el botón de rentar con el precio (color naranja)
         const rentButton = document.createElement('button');
         rentButton.textContent = `$${this.precio(movie.price)} RENT`;
         rentButton.className = 'rent-button orange-button';
-        // Añadir el botón debajo de la descripción
+        containerRight.appendChild(title);
+        containerRight.appendChild(year);
+        containerRight.appendChild(description);
         containerRight.appendChild(rentButton);
         // Añadir ambos contenedores a la tarjeta
         card.appendChild(containerLeft);
