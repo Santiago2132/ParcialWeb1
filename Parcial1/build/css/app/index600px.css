@@ -27,7 +27,7 @@ header, footer {
     background: var(--main-color-gradient);
     color: var(--text-color-light);
     text-align: center;
-    height: 15%;
+    height: 12%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,8 +35,11 @@ header, footer {
     overflow: hidden;
     position: fixed;
     z-index: 10;
+    font-size: 10px;
 }
-
+footer{
+    height: 10%;
+}
 header {
     top: 0;
 }
@@ -55,11 +58,11 @@ header h1, header h3, footer h1, footer h3 {
 }
 
 header h1 {
-    font-size: 1.5rem;
+    font-size: 12px;
 }
 
 header h3, footer h3 {
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 footer h1 {
@@ -75,37 +78,44 @@ nav {
     background-color: var(--main-color);
     align-items: center;
     justify-content: center;
-    height: 160px;
+    height: 140px;
     position: fixed;
-    top: 14%; /* Debajo del header */
+    top: 11%; /* Debajo del header */
     width: 100%;
     z-index: 9;
+    margin-top: 1%;
+    margin-bottom: 0%;
 }
 
+menu{
+    margin: 0%;
+    width: 90%;
+}
+
+menu button{
+    width: 100%;
+}
 #search {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
-    margin-top: 0;
+    width: 80%; /* Asegura que el contenedor ocupe todo el ancho */
+    margin-top: -5px;
     box-sizing: border-box; /* Para incluir bordes en el cálculo del ancho */
 }
 
 #search input, #search button {
-    height: 25px;
+    height: 20px;
     margin: 0;
     box-sizing: border-box;
-    width: 100%; /* Asegura que tanto el input como el button ocupen el ancho completo */
-}
-
-#search input {
-    max-width: none; /* Permite que el input crezca más allá del valor anterior */
+    width: 95%; 
+    max-width: 95%;/* Asegura que tanto el input como el button ocupen el ancho completo */
 }
 
 #search button {
     background: var(--main-color-gradient);
     border: none;
     color: var(--text-color-light);
-    padding: 4px;
+    padding: 1px;
 }
 
 
@@ -114,10 +124,16 @@ nav {
     background-color: var(--main-color);
     color: var(--text-color-light);
     border: none;
-    padding: 10px;
-    font-size: 18px;
+    padding: 5px;
+    font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 40%;
+   
 }
 
 .pagination-btn:hover {
@@ -125,6 +141,8 @@ nav {
 }
 
 .page-counter {
+    position: fixed;
+    right: 48%;
     font-size: 14px;
     color: #333;
 }
@@ -132,7 +150,7 @@ nav {
 /* Main Content */
 main {
     flex: 1;
-    margin-top: calc(10% + 180px); /* Espacio ocupado por header y nav */
+    margin-top: calc(5% + 160px); /* Espacio ocupado por header y nav */
     margin-bottom: 10%; /* Espacio ocupado por el footer */
     overflow-y: auto; /* Habilita el scroll interno */
     padding: 20px;
@@ -152,9 +170,9 @@ main {
     grid-template-columns: 1fr; /* Una columna */
     grid-template-rows: repeat(3, minmax(250px, 1fr)); /* Aumenta la altura mínima a 250px para las cartas */
     gap: 20px; /* Espacio entre las cartas */
-    padding: 10px;
-    height: 100%;
-    border: black solid 1px;
+    padding: 5px;
+    height: 80%;
+   
     justify-content: center;
     overflow-y: scroll; /* Habilita el scroll en el carrusel */
 }
@@ -166,12 +184,15 @@ main {
     overflow: hidden;
     background: var(--main-color-gradient);
     border-radius: 8px; /* Bordes redondeados */
-    padding: 10px;
+    padding: 5px;
 }
-
+.movie-card img{
+    height: 80px;
+    margin-top: -120%;
+}
 /* Estilo para la parte izquierda de la carta */
 .left-m {
-    padding-left: 10%;
+    padding-left: 7%;
     width: 25%;
     display: flex;
     flex-direction: column;
@@ -213,9 +234,9 @@ main {
 
 /* Estilo para el párrafo dentro de la carta */
 .right-m p {
-    max-height: 400px; /* Limita la altura máxima del párrafo a 400px */
+    max-height: 200px; /* Limita la altura máxima del párrafo a 400px */
     overflow-y: auto; /* Habilita el scroll solo en el párrafo si el contenido excede los 400px */
-    font-size: 14px;
+    font-size: 10px;
     margin-bottom: 10px;
     white-space: normal;
     overflow-wrap: break-word;
@@ -223,12 +244,11 @@ main {
 
 /* Estilo para el botón dentro de la carta */
 .rent-button {
-    height: 40px;
+    height: 30px;
     background-color: #e0a31d;
     border: none;
-    font-size: 1rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-size: 10px;
+    margin-top: -20px;
     border-radius: 4px;
     cursor: pointer;
 }
@@ -265,7 +285,6 @@ main {
     align-items: center;
     justify-content: center;
     width: 100%;
-    border: #201b13 1px solid;
     margin: 0; /* Elimina el margen superior para que no haya espacio entre `#search` y `.buttons` */
     box-sizing: border-box;
     margin-left: -4%;
